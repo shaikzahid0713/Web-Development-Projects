@@ -1,32 +1,34 @@
 /* global document */
     
-if (document != undefined) {
-    const hourelement = document.getelementbyid("hour");
-    const minuteelement = document.getelementbyid("minutes");
-    const secondselement = document.getelementbyid("seconds");
-    const noonelement = document.getelementbyid("ampm");
-}
+const hourElement = document.getElementById("hour");
+const minuteElement = document.getElementById("minutes");
+const secondsElement = document.getElementById("seconds");
+const noonElement = document.getElementById("ampm");
 
-function updateclock() {
-    let hour = new date().gethours();
-    console.log(hour);
-    let minutes = new date().getminutes();
-    console.log(minutes);
+function updateClock() {
+    let hour = new Date().getHours();
+    let minutes = new Date().getMinutes();
     let seconds = new Date().getSeconds();
-    console.log(seconds);
     let isNoon = "AM";
 
     if (hour > 12) {
-        h -= 12;
+        hour -= 12;
         isNoon = "PM";
     }
 
-    h = (h < 10) ? "0" + h : h;
+
+    hour = (hour < 10) ? "0" + hour : hour;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
 
     hourElement.innerText = hour;
-    minuteelement.innertext = minutes;
-    secondselement.innertext = seconds;
+    minuteElement.innerText = minutes;
+    secondsElement.innerText = seconds;
     noonElement.innerText = isNoon;
+    
+    setTimeout(() => {
+        updateClock()
+    }, 1000);
 }
 
 updateClock();
